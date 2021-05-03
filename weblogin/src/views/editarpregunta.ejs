@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/estilo')%>
+    
+    <title>Nueva Pregunta</title>
+</head>
+
+    <%- include('partials/head')%>
+
+    <h1> Nueva Pregunta</h1>
+
+    <div class="container">
+        <form class="row g-3" action="/editarpregunta/<%- pregunta[0].question_id %> " method= "post">
+            <div class="col-md-6">
+            <label for="grupo" class="form-label">Grupo</label>
+                <select id="grupo" class="form-select" name="grupo">
+                    <% grupos.forEach(function(grupo, index){ %>
+                        <option value="<%- grupo.group_id%>" <%= grupo.group_id == pregunta[0].group_id ? 'selected' : '' %>> <%- grupo.group_name%></option>
+
+                    <% })%>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label for="nivel" class="form-label">Nivel</label>
+                <select id="nivel" class="form-select" name="nivel">
+                    <% levels.forEach(function(level, index){ %>
+                    <option  value="<%- level.level_id%>" <%= level.level_id == pregunta[0].level_id ? 'selected' : '' %>> <%- level.level_desc%></option>
+                    <% })%>
+                </select>
+            </div>
+
+            <div class="col-md-12">
+                <label for="pregunta" class="form-label">Pregunta:</label>
+                <input type="text" class="form-control" id="Pregunta" name="pregunta" value = "<%-pregunta[0].question_desc %>">
+            </div>
+
+            <div class="col-md-12">
+                <label for="imagen" class="form-label">Url imagen:</label>
+                <input type="text" class="form-control" id="imagen" name="imagen" value= "<%-pregunta[0].imagen%>">
+            </div>
+
+            <div class="col-12">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </form>
+
+    </div>
+
+<%- include('partials/footer')%>
+</html>

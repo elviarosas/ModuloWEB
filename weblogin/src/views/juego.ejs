@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/estilo')%>
+    
+    <title>Pagina Principal</title>
+</head>
+
+    <%- include('partials/head')%>
+
+    <div class="ratio ratio-16x9">
+        <iframe src="/game/index.html?user_id=<%-user.user_id%>" width="1480" height="700" title="Juego" allowfullscreen></iframe>
+      </div>
+
+<%- include('partials/footer')%>
+</html>

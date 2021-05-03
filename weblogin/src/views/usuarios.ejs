@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/estilo')%>
+    <title>Usuarios</title>
+</head>
+<%- include('partials/head')%>
+    
+    <h1>Listado de Usuarios</h1>
+    
+    <div class= "container">
+        
+        <div class="row" >
+            <div class="col">id</div>
+            <div class="col">user_name</div>
+            <div class="col">password</div>
+        </div>
+
+        <% users.forEach(function(user, index){ %>
+            <div class="row">
+                <div class="col">
+                    <%- user.user_id %>
+                </div>
+                <div class="col">
+                    <%- user.user_name %>
+                </div>
+                <div class="col">
+                    <%- user.password %>
+                </div>
+            </div>  
+        <% })%>
+        
+  
+    </div>
+
+    <%- include('partials/footer')%>   
+
+</html>

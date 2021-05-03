@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/estilo')%>
+    <title>Listado Preguntas</title>
+</head>
+<%- include('partials/head')%>
+
+<h2>Listado Preguntas</h2>
+
+<p><a href="/nuevapregunta"> Nueva Pregunta</a>
+    </p>
+
+<div class="container">
+    <div class="row">
+        <div class="col">id</div>
+        <div class="col">Grupo</div>
+        <div class="col">Nivel</div>
+        <div class="col">Pregunta</div>
+        <div class="col">url imagen</div>
+    </div>
+
+    <% preguntas.forEach(function(pregunta, index){ %>
+        <div class="row">
+            <div class="col">  <a href="/editarpregunta/<%-pregunta.question_id %>"> <%- pregunta.question_id%> </a></div>
+            <div class="col"><%- pregunta.group_name%></div>
+            <div class="col"><%-pregunta.level_desc%></div>
+            <div class="col"><%-pregunta.question_desc%></div>
+            <div class="col"><%-pregunta.question_image%></div>
+        </div>
+        
+    <%})%>
+    
+
+</div>
+    
+<%- include('partials/footer')%>
+</html>

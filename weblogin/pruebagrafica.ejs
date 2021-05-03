@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Weather Update</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    
+    <script>
+
+    function dspChrt(labels, values) {
+
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+    labels: labels,
+    datasets: [{
+      label: 'Cantidad',
+      data: values, // json value received used in method
+      backgroundColor: "rgba(153,255,51,0.4)"
+    }]
+  }
+});
+}
+    </script>
+
+<script>
+
+ var myVar = setInterval(loadChart, 60000); // updates chart every one minute
+
+ function loadChart()
+ {
+console.log('entro a loadchart')
+    var wData, hum;
+
+    //var requestURL = 'https://cors.io/?http://api.holfuy.com/live/?s=759&pw=h1u5l4kka&m=JSON&tu=C&su=m/s'; //URL of the JSON data
+    var requestURL = 'http://localhost:3001/api/getStatUsoJuego'; //URL of the JSON data
+    var request = new XMLHttpRequest({mozSystem: true}); // create http request
+
+    request.onreadystatechange = function() {
+     if(request.readyState == 4 && request.status == 200) {
+        wData = JSON.parse(request.responseText);
+        var labels = wData.map(function (e) {
+          return e.dia;
+        });
+        var values = wData.map(function (e) {
+          return e.cantidad;
+        });
+
+
+        hum = wData.cantidad;
+
+        console.log(labels)
+        console.log(values)
+        console.log(wData);
+        console.log(hum);
+
+        dspChrt(labels, values);    
+  }
+}
+
+
+    request.open('GET', requestURL);
+    request.send(); // send the request
+
+    //dspChrt(hum);
+
+ }
+
+</script>
+
+
+  </head>
+
+
+  <body onload="loadChart();">
+
+  <div class="container">
+
+  <h2>Weather Update</h2>
+
+  <div>
+    <canvas id="myChart"></canvas>
+  </div>
+
+  </div>
+
+
+  </body>
+</html>

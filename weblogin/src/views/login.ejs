@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <%- include('partials/estilo')%>
+    <title>Login</title>
+</head>
+<body>
+
+    
+    <div class="container text-center">
+
+        <form action="/login" method="POST">
+            <div class="row">
+                <div class="col-6">
+                    <div class="display-4"> Login</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class ="col-6">
+                    <% if (messages.error) { %>
+                        <%- messages.error  %>
+                    <% } %>
+                </div> 
+            </div>
+
+            <div class="row">
+
+                <div class="form-group col-6 ">
+                    <label for="username" >username:</label>
+                    <input type="email" class="form-control" id= "username" name="username" required>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="form-group col-6 ">
+                    <label for="password" >password:</label>
+                    <input type="password" class="form-control" id= "password" name="password" required>
+                </div> 
+            </div>
+            <div class="row">
+                <div class= "form-group col-6">
+                    <button type="submit" class= "btn btn-success">Iniciar</button>
+                </div>
+             </div>
+        </form>
+    
+    </div>
+
+    <%- include('partials/footer')%>
+</html>
